@@ -67,3 +67,12 @@ def test_vector_sum():
     sum_vector = Vector(*sum_t)
 
     assert p + p2 == sum_vector
+
+
+def test_vector_negation():
+    t = (4.3, 5.6, -2.1)
+    neg_t = [-x for x in t]
+
+    v = Vector(*t)
+    neg_v = Vector(*neg_t)
+    assert -v == neg_v

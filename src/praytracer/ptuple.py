@@ -25,3 +25,9 @@ class PTuple(object):
 
     def __add__(self, tup: PTuple) -> PTuple:
         return PTuple(self.x + tup.x, self.y + tup.y, self.z + tup.z)
+
+    def __sub__(self, tup: PTuple) -> PTuple:
+        return PTuple(self.x - tup.x, self.y - tup.y, self.z - tup.z)
+
+    def __neg__(self) -> PTuple:
+        return PTuple(-self.x, -self.y, -self.z)

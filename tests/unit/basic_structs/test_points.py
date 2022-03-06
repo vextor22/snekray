@@ -1,5 +1,4 @@
-from praytracer import Point
-from praytracer.vector import Vector
+from praytracer import Point, Vector
 
 
 def declare_point(x, y, z):
@@ -68,10 +67,10 @@ def test_point_vector_inequality():
     assert vec != p
 
 
-def test_vector_sum():
+def test_point_vector_sum():
     t = (4.3, 5.6, -2.1)
     t2 = (3, -1.6, 8.1)
-    sum_t = (sum(x) for x in zip(t, t2))
+    sum_t = [sum(x) for x in zip(t, t2)]
 
     x, y, z = t
 
@@ -86,3 +85,20 @@ def test_vector_sum():
     assert p + p2 == p
     assert p + v == sum_point
     assert type(sum_point) == Point
+
+
+def test_point_vector_diff():
+    t = (4.3, 5.6, -2.1)
+    t2 = (3, -1.6, 8.1)
+    diff_t = [p1 - p2 for p1, p2 in zip(t, t2)]
+
+    p = Point(*t)
+
+    p2 = Point(*t2)
+    v = Vector(*t2)
+
+    diff_point = Point(*diff_t)
+    diff_vector = Vector(*diff_t)
+
+    assert p - p2 == diff_vector
+    assert p - v == diff_point

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Union
 from .ptuple import PTuple
-import praytracer.point
+import praytracer
 
 
 class Vector(PTuple):
@@ -20,3 +20,13 @@ class Vector(PTuple):
             return Vector(new_values.x, new_values.y, new_values.z)
         else:
             return praytracer.Point(new_values.x, new_values.y, new_values.z)
+
+    def __sub__(self, tup: PTuple) -> Vector:
+        new_vec = super().__sub__(tup)
+        if isinstance(tup, Vector):
+            return Vector(new_vec.x, new_vec.y, new_vec.z)
+        return self
+
+    def __neg__(self) -> Vector:
+        tup = super().__neg__()
+        return Vector(tup.x, tup.y, tup.z)
