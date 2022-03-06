@@ -11,18 +11,17 @@ class Point(PTuple):
         super().__init__(x, y, z)
         self.w = self.W
 
-    def __eq__(self, __o: object) -> bool:
-        return super().__eq__(__o) and isinstance(__o, Point)
+    def __eq__(self, other: object) -> bool:
+        return super().__eq__(other) and isinstance(other, Point)
 
     def __add__(self, tup: PTuple) -> Point:
         if isinstance(tup, praytracer.Vector):
-            new_point = super().__add__(tup)
-            return Point(new_point.x, new_point.y, new_point.z)
+            return Point(*super().__add__(tup).dims)
         return self
 
     def __sub__(self, tup: PTuple) -> Union[praytracer.Vector, Point]:
-        new_vec = super().__sub__(tup)
+        new_dims = super().__sub__(tup).dims
         if isinstance(tup, Point):
-            return praytracer.Vector(new_vec.x, new_vec.y, new_vec.z)
+            return praytracer.Vector(*new_dims)
         else:
-            return Point(new_vec.x, new_vec.y, new_vec.z)
+            return Point(*new_dims)
