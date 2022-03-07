@@ -1,3 +1,4 @@
+import math
 from praytracer import Vector, Point
 
 
@@ -76,3 +77,59 @@ def test_vector_negation():
     v = Vector(*t)
     neg_v = Vector(*neg_t)
     assert -v == neg_v
+
+
+def test_vector_magnitude():
+    v1 = Vector(0, 0, 1)
+    v2 = Vector(0, 1, 0)
+    v3 = Vector(1, 0, 0)
+    v4 = Vector(1, 2, 3)
+    v5 = Vector(-1, -2, -3)
+
+    assert v1.magnitude() == 1
+    assert v2.magnitude() == 1
+    assert v3.magnitude() == 1
+    assert v4.magnitude() == math.sqrt(14)
+    assert v5.magnitude() == math.sqrt(14)
+    assert v4.magnitude() == (-v4).magnitude()
+    assert v1.magnitude() == (-v1).magnitude()
+
+
+def test_vector_normalize_identities():
+    v1 = Vector(4, 0, 0)
+    v2 = Vector(0, 4, 0)
+    v3 = Vector(0, 0, 4)
+    unit1 = Vector(1, 0, 0)
+    unit2 = Vector(0, 1, 0)
+    unit3 = Vector(0, 0, 1)
+    assert v1.normalize() == unit1
+    assert v2.normalize() == unit2
+    assert v3.normalize() == unit3
+
+
+def test_vector_normalize_magnitude():
+
+    v = Vector(1, 2, 3)
+    assert v.normalize().magnitude() == 1
+
+
+def test_vector_normalize_constant():
+
+    v = Vector(1, 2, 3)
+    assert v.normalize() == Vector(
+        1 / math.sqrt(14), 2 / math.sqrt(14), 3 / math.sqrt(14)
+    )
+
+
+def test_vector_dot_product():
+    v1 = Vector(1, 2, 3)
+    v2 = Vector(2, 3, 4)
+
+    assert v1.dot(v2) == 20
+
+
+def test_vector_cross_product():
+    v1 = Vector(1, 2, 3)
+    v2 = Vector(2, 3, 4)
+    assert v1.cross(v2) == Vector(-1, 2, -1)
+    assert v2.cross(v1) == Vector(1, -2, 1)
