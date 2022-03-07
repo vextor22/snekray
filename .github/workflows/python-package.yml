@@ -37,7 +37,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        dotenv run -- coverage run --source ./src -m pytest --junitxml=reports/junit.xml --html=reports/report.html
+        PYTHONPATH=./src coverage run --source ./src -m pytest --junitxml=reports/junit.xml --html=reports/report.html
     - name: Generate coverage reports
       run: |
         coverage xml -o reports/coverage.xml
