@@ -1,4 +1,4 @@
-class PRay(object):
+class SnekRay(object):
     WIDTH = 640
     HEIGHT = 360
 

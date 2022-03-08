@@ -7,10 +7,10 @@ load_dotenv(override=True)
 import os
 
 print(os.environ.get("PYTHONPATH", "none"))
-from praytracer import PRay, Point, Vector
+from snekray import SnekRay, Point, Vector
 
 
-tracer = PRay()
+tracer = SnekRay()
 
 print(f"Render at: {tracer.get_dimensions()}")
 

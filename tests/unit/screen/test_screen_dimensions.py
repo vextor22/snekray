@@ -1,11 +1,11 @@
-from praytracer import PRay
+from snekray import SnekRay
 
 
-def pray_instance(*args):
-    return PRay(*args)
+def snek_instance(*args):
+    return SnekRay(*args)
 
 
 def test_dimensions():
-    dimensions = PRay.get_default_dimensions()
-    assert pray_instance().get_dimensions()[0] == dimensions[0]
-    assert pray_instance().get_dimensions()[1] == dimensions[1]
+    dimensions = SnekRay.get_default_dimensions()
+    assert snek_instance().get_dimensions()[0] == dimensions[0]
+    assert snek_instance().get_dimensions()[1] == dimensions[1]

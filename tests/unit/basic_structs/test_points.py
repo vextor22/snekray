@@ -1,4 +1,4 @@
-from praytracer import Point, Vector
+from snekray import Point, Vector
 
 
 def declare_point(x, y, z):

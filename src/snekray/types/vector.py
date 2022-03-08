@@ -3,7 +3,7 @@ from re import A
 from typing import Optional, Union
 import math
 
-import praytracer
+import snekray
 from .ptuple import PTuple
 
 
@@ -19,12 +19,12 @@ class Vector(PTuple):
     def __eq__(self, other: object) -> bool:
         return super().__eq__(other) and isinstance(other, Vector)
 
-    def __add__(self, tup: PTuple) -> Union[Vector, praytracer.Point]:
+    def __add__(self, tup: PTuple) -> Union[Vector, snekray.Point]:
         new_dims = super().__add__(tup).dims
         if isinstance(tup, Vector):
             return Vector(*new_dims)
         else:
-            return praytracer.Point(*new_dims)
+            return snekray.Point(*new_dims)
 
     def __sub__(self, tup: PTuple) -> Vector:
         if isinstance(tup, Vector):

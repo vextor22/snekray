@@ -1,5 +1,5 @@
 import math
-from praytracer import Vector, Point
+from snekray import Vector, Point
 
 
 def declare_vector(x, y, z):
