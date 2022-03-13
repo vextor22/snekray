@@ -33,7 +33,7 @@ def test_point_equality():
     assert p2 == p
 
 
-def test_point_equality():
+def test_point_inequality():
     t = (4.1, 5.6, -2.1)
     x, y, z = t
 
