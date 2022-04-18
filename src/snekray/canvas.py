@@ -17,12 +17,12 @@ class Canvas:
         self.pixels: List[snekray.Color] = [self.fill for _ in range(width * height)]
 
     def write_pixel(self, x: int, y: int, color: snekray.Color) -> None:
-        if x <= 0:
-            x = 1
+        if x < 0:
+            x = 0
         elif x >= self.width:
             x = self.width - 1
-        if y <= 0:
-            y = 1
+        if y < 0:
+            y = 0
         elif y >= self.height:
             y = self.height - 1
         self.pixels[x + (y * self.width)] = color
