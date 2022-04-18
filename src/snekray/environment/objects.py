@@ -7,7 +7,7 @@ Vector = snekray.Vector
 class PObject:
     __name__ = "PObject"
 
-    def __init__(self, position=None, direction=None) -> None:
+    def __init__(self, position: Point = None, direction: Vector = None) -> None:
         self.position = position or Point(0, 1, 0)
         self.velocity = direction or Vector(1, 1, 0).normalize()
 
@@ -25,7 +25,9 @@ class PObject:
 class Projectile(PObject):
     __name__ = "Projectile"
 
-    def __init__(self, position=None, direction=None, magnitude=None) -> None:
+    def __init__(
+        self, position: Point = None, direction: Vector = None, magnitude: float = None
+    ) -> None:
         super().__init__(position, direction)
         if magnitude is not None:
             self.velocity = self.velocity * magnitude

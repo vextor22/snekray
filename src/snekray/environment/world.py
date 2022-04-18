@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 from snekray import Vector
 
 from .objects import PObject
@@ -9,7 +9,7 @@ class Environment:
         self,
         gravity: Optional[Vector] = None,
         wind: Optional[Vector] = None,
-        obj_list: Optional[list[PObject]] = None,
+        obj_list: Optional[List[PObject]] = None,
     ) -> None:
         self.gravity = gravity or Vector(0, -0.1, 0)
         self.wind = wind or Vector(-0.01, 0, 0)
