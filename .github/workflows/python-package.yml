@@ -43,11 +43,11 @@ jobs:
         coverage xml -o reports/coverage.xml
         coverage html -d reports/coverage
       if: ${{ always() }}
-    #- name: Generate Badges
-    #  run: |
-    #    genbadge tests -i reports/junit.xml -o reports/pytest.svg
-    #    genbadge coverage -i reports/coverage.xml -o reports/coverage.svg
-    #  if: ${{ always() }}
+    - name: Generate Badges
+      run: |
+        genbadge tests -i reports/junit.xml -o reports/pytest.svg
+        genbadge coverage -i reports/coverage.xml -o reports/coverage.svg
+      if: ${{ github.EVENT_NAME == 'pull_request' }}
     - name: Upload pytest test results
       uses: actions/upload-artifact@v3
       with:

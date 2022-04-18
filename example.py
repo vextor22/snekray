@@ -43,3 +43,9 @@ print(f"We got to {projectile.position} at a final tick of {env.tick_count}")
 
 with open("output.ppm", "w") as f:
     f.write(canvas.to_ppm())
+
+
+print("Test time to fill 1024x768 grid")
+c1 = Color(1.0, 0.5, 0.5)
+
+canvas = Canvas(1024, 768, fill=c1)
