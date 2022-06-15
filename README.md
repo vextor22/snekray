@@ -22,4 +22,4 @@ magick mogrify -format png *.ppm
 ## Examples
 
 Chapter 2
-![Image](./scenes/output.png?raw=true)
+<img src="./scenes/output.png?raw=true" height="300">
