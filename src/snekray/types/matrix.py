@@ -4,29 +4,51 @@ import math
 
 
 class Matrix:
-    def __init__(self, data: Tuple[Tuple[float]]) -> None:
-        self.matrix: Tuple[Tuple[float]] = data
+    def __init__(self, data: Tuple[Tuple[float, ...], ...]) -> None:
+        self.matrix: Tuple[Tuple[float, ...], ...] = data
         self.col_count = len(self.matrix[0])
 
     @classmethod
     def identity_matrix(cls, dim: int = 4) -> Matrix:
         return Matrix(
-            tuple(tuple((1 if i == j else 0) for j in range(dim)) for i in range(dim))
+            cast(
+                Tuple[Tuple[float]],
+                tuple(
+                    tuple((1.0 if i == j else 0.0) for j in range(dim))
+                    for i in range(dim)
+                ),
+            )
+        )
+
+    def submatrix(self, row_i, col_j):
+        return Matrix(
+            [
+                [col for j, col in enumerate(row) if j != col_j]
+                for i, row in enumerate(self.matrix)
+                if i != row_i
+            ]
         )
 
     def get(self, row, column) -> float:
         return self.matrix[row][column]
 
-    def get_row(self, row) -> Tuple[float]:
+    def get_row(self, row) -> Tuple[float, ...]:
         return self.matrix[row]
 
-    def get_column(self, col) -> Tuple[float]:
-        return cast(Tuple[float], tuple(row[col] for row in self.matrix))
+    def get_column(self, col) -> Tuple[float, ...]:
+        return tuple(row[col] for row in self.matrix)
 
     @property
     def cols(self):
         for i in range(self.col_count):
             yield self.get_column(i)
+
+    def determinant(self) -> float:
+        if len(self.matrix) == 2:
+            return (self.matrix[0][0] * self.matrix[1][1]) - (
+                self.matrix[1][0] * self.matrix[0][1]
+            )
+        return 0.0
 
     def transpose(self):
         return Matrix(tuple(self.cols))
@@ -48,16 +70,14 @@ class Matrix:
 
     def __mul__(self, other: Union[Matrix, tuple]):
         if isinstance(other, tuple):
+            other = cast(Tuple[float, ...], other)
             other = Matrix(tuple((x,) for x in other))
         if isinstance(other, Matrix):
             other = cast(Matrix, other)
 
             return Matrix(
                 tuple(
-                    cast(
-                        Tuple[float],
-                        tuple((self.cross(row, col) for col in other.cols)),
-                    )
+                    tuple((self.cross(row, col) for col in other.cols))
                     for row in self.matrix
                 )
             )

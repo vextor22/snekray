@@ -144,3 +144,32 @@ def test_matrix_transpose_of_identity():
     identity_matrix = Matrix.identity_matrix()
 
     assert identity_matrix == identity_matrix.transpose()
+
+
+def test_2x2_determinant():
+    data = ((1, 5), (-3, 2))
+
+    m = Matrix(data)
+
+    assert m.determinant() == 17
+
+
+def test_3x3_submatrix():
+    data = ((1, 5, 0), (-3, 2, 7), (0, 6, -3))
+    m = Matrix(data)
+
+    sub_data = ((-3, 2), (0, 6))
+    sub_m = Matrix(sub_data)
+
+    assert m.submatrix(0, 2) == sub_m
+
+
+def test_4x4_submatrix():
+    data = ((2, 1, 5, 0), (9, 9, 9, 9), (3, -3, 2, 7), (4, 0, 6, -3))
+    m = Matrix(data)
+
+    sub_data = ((1, 5, 0), (-3, 2, 7), (0, 6, -3))
+    sub_m = Matrix(sub_data)
+
+    assert m.submatrix(1, 0) == sub_m
+    assert m.submatrix(2, 0) != sub_m

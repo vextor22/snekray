@@ -11,3 +11,9 @@ source venv/bin/activate
 pip install -r requirements.txt
 dotenv run -- python example.py
 ```
+
+---
+## Examples
+
+Chapter 2
+![Image](./scenes/output.ppm)
