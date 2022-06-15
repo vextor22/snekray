@@ -16,4 +16,4 @@ dotenv run -- python example.py
 ## Examples
 
 Chapter 2
-![Image](./scenes/output.ppm)
+![Image](./scenes/output.ppm?raw=true)
