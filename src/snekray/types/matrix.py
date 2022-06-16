@@ -68,6 +68,17 @@ class Matrix:
     def cross(self, row, col) -> float:
         return sum(x[0] * x[1] for x in zip(row, col))
 
+    def minor(self, row, col) -> float:
+        return self.submatrix(row, col).determinant()
+
+    def cofactor(self, row, col) -> float:
+        minor_value = self.minor(row, col)
+
+        if (row + col) % 2:
+            minor_value *= -1
+
+        return minor_value
+
     def __mul__(self, other: Union[Matrix, tuple]):
         if isinstance(other, tuple):
             other = cast(Tuple[float, ...], other)

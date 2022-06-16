@@ -173,3 +173,21 @@ def test_4x4_submatrix():
 
     assert m.submatrix(1, 0) == sub_m
     assert m.submatrix(2, 0) != sub_m
+
+
+def test_3x3_minor():
+    data = ((3, 5, 0), (2, -1, -7), (6, -1, 5))
+    a = Matrix(data)
+    b = a.submatrix(1, 0)
+    assert b.determinant() == 25
+    assert a.minor(1, 0) == 25
+
+
+def test_3x3_cofactor():
+    data = ((3, 5, 0), (2, -1, -7), (6, -1, 5))
+    a = Matrix(data)
+    assert a.minor(0, 0) == -12
+    assert a.cofactor(0, 0) == -12
+
+    assert a.minor(1, 0) == 25
+    assert a.cofactor(1, 0) == -25
