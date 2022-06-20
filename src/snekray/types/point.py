@@ -12,6 +12,10 @@ class Point(PTuple):
         super().__init__(x, y, z)
         self.w = self.W
 
+    def mat_mul(self, matrix: snekray.Matrix) -> Point:
+        result = matrix * (*self.dims, self.w)
+        return Point(result.matrix[0][0], result.matrix[1][0], result.matrix[2][0])
+
     def __eq__(self, other: object) -> bool:
         return super().__eq__(other) and isinstance(other, Point)
 

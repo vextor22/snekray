@@ -191,3 +191,85 @@ def test_3x3_cofactor():
 
     assert a.minor(1, 0) == 25
     assert a.cofactor(1, 0) == -25
+
+
+def test_3x3_determinant():
+    data = ((1, 2, 6), (-5, 8, -4), (2, 6, 4))
+    m = Matrix(data)
+
+    assert m.cofactor(0, 0) == 56
+    assert m.cofactor(0, 1) == 12
+    assert m.cofactor(0, 2) == -46
+
+    assert m.determinant() == -196
+
+
+def test_4x4_determinant():
+    data = (
+        (-2, -8, 3, 5),
+        (-3, 1, 7, 3),
+        (1, 2, -9, 6),
+        (-6, 7, 7, -9),
+    )
+    m = Matrix(data)
+
+    assert m.cofactor(0, 0) == 690
+    assert m.cofactor(0, 1) == 447
+    assert m.cofactor(0, 2) == 210
+    assert m.cofactor(0, 3) == 51
+    assert m.determinant() == -4071
+
+
+def test_is_invertible():
+    data = ((6, 4, 4, 4), (5, 5, 7, 6), (4, -9, 3, -7), (9, 1, 7, -6))
+    m = Matrix(data)
+
+    assert m.determinant() == -2120
+    assert m.is_invertible == True
+
+
+def test_is_not_invertible():
+    data = ((-4, 2, -2, -3), (9, 6, 2, 6), (0, -5, 1, -5), (0, 0, 0, 0))
+    m = Matrix(data)
+
+    assert m.determinant() == 0
+    assert m.is_invertible == False
+
+
+def test_4x4_inversion():
+    data_1 = (
+        (-5, 2, 6, -8),
+        (1, -5, 1, 8),
+        (7, 7, -6, -7),
+        (1, -3, 7, 4),
+    )
+    data_2 = (
+        (0.21805, 0.45113, 0.24060, -0.04511),
+        (-0.80827, -1.45677, -0.44361, 0.52068),
+        (-0.07895, -0.22368, -0.05263, 0.19737),
+        (-0.52256, -0.81391, -0.30075, 0.30639),
+    )
+    m = Matrix(data_1)
+    i_m = Matrix(data_2)
+    assert m.determinant() == 532
+    assert m.cofactor(2, 3) == -160
+    assert m.inverse() == i_m
+
+
+def test_4x4_inverse_multiplication():
+    data_1 = (
+        (3, -9, 7, 3),
+        (3, -8, 2, -9),
+        (-4, 4, 4, 1),
+        (-6, 5, -1, 1),
+    )
+    data_2 = (
+        (8, 2, 2, 2),
+        (3, -1, 7, 0),
+        (7, 0, 5, 4),
+        (6, -2, 0, 5),
+    )
+    a = Matrix(data_1)
+    b = Matrix(data_2)
+    c = a * b
+    assert a == c * b.inverse()

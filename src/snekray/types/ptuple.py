@@ -13,7 +13,10 @@ class PTuple:
         self.dims = (self.x, self.y, self.z)
 
     def __eq__(self, other: object) -> bool:
-        return all(math.isclose(*d) for d in zip(self.dims, cast(PTuple, other).dims))
+        return all(
+            math.isclose(*d, abs_tol=1e-15)
+            for d in zip(self.dims, cast(PTuple, other).dims)
+        )
 
     def __add__(self, tup: PTuple) -> PTuple:
         return PTuple(self.x + tup.x, self.y + tup.y, self.z + tup.z)
@@ -28,4 +31,4 @@ class PTuple:
         return PTuple(*(dim * scalar for dim in self.dims))
 
     def __repr__(self) -> str:
-        return f"{self.__name__}: ({self.x:.2f},{self.y:.2f},{self.z:.2f})"
+        return f"{self.__name__}: ({self.x:.6f},{self.y:.6f},{self.z:.6f})"
