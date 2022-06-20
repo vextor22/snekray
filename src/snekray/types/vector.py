@@ -16,6 +16,10 @@ class Vector(PTuple):
         super().__init__(x, y, z)
         self.w = self.W
 
+    def mat_mul(self, matrix: snekray.Matrix) -> Vector:
+        result = matrix * (*self.dims, self.w)
+        return Vector(result.matrix[0][0], result.matrix[1][0], result.matrix[2][0])
+
     def __eq__(self, other: object) -> bool:
         return super().__eq__(other) and isinstance(other, Vector)
 
