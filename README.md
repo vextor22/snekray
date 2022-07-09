@@ -37,3 +37,10 @@ Chapter 5
 
 
 <img src="./scenes/sphere.png?raw=true" height="300">
+
+---
+Chapter 6
+
+Phong lighting with a scaled and sheared sphere.
+
+<img src="./scenes/sphere_with_light.png?raw=true" height="300">
