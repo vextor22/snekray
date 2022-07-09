@@ -1,12 +1,14 @@
+from __future__ import annotations
 import snekray as sr
 import math
-from typing import Tuple, Union, cast
+from typing import Tuple, Union, cast, Optional
 
 
 class Sphere(sr.BaseObject):
-    def __init__(self) -> None:
-        self.origin = sr.Point(0, 0, 0)
+    def __init__(self, material: Optional[sr.Material] = None) -> None:
+        super().__init__()
         self.radius = 1
+        self.material = sr.Material() if material is None else material
         self._transform = sr.Matrix.identity_matrix()
 
     @property
@@ -36,3 +38,9 @@ class Sphere(sr.BaseObject):
 
         t2 = (-b + math.sqrt(discriminant)) / (2 * a)
         return (sr.Intersection(t1, self), sr.Intersection(t2, self))
+
+    def normal_at(self, p: sr.Point) -> sr.Vector:
+        p = p.mat_mul(self.transform.inverse())
+        object_normal = cast(sr.Vector, p - sr.Point(0, 0, 0)).normalize()
+        world_normal = object_normal.mat_mul(self.transform.inverse().transpose())
+        return world_normal.normalize()

@@ -133,3 +133,19 @@ def test_vector_cross_product():
     v2 = Vector(2, 3, 4)
     assert v1.cross(v2) == Vector(-1, 2, -1)
     assert v2.cross(v1) == Vector(1, -2, 1)
+
+
+def test_reflecting_vector_45_degrees():
+    v = Vector(1, -1, 0)
+    n = Vector(0, 1, 0)
+
+    r = v.reflect(n)
+    r = Vector(1, 1, 0)
+
+
+def test_reflecting_vector_slanted():
+    v = Vector(0, -1, 0)
+    n = Vector(math.sqrt(2) / 2, math.sqrt(2) / 2, 0)
+
+    r = v.reflect(n)
+    r = Vector(1, 0, 0)
