@@ -1,7 +1,7 @@
 from __future__ import annotations
-from re import A, I
 from typing import List, Tuple, cast, Union
 import math
+import snekray as sr
 
 
 class Matrix:
@@ -161,6 +161,12 @@ class Matrix:
             minor_value *= -1
 
         return minor_value
+
+    def to_point(self) -> sr.Point:
+        return sr.Point(*self.get_column(0)[:3])
+
+    def to_vector(self) -> sr.Vector:
+        return sr.Vector(*self.get_column(0)[:3])
 
     def __mul__(self, other: Union[Matrix, tuple]) -> Matrix:
         if isinstance(other, tuple):

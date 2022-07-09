@@ -14,7 +14,7 @@ class PTuple:
 
     def __eq__(self, other: object) -> bool:
         return all(
-            math.isclose(*d, abs_tol=1e-15)
+            math.isclose(*d, abs_tol=1e-5)
             for d in zip(self.dims, cast(PTuple, other).dims)
         )
 

@@ -20,6 +20,9 @@ class Vector(PTuple):
         result = matrix * (*self.dims, self.w)
         return Vector(result.matrix[0][0], result.matrix[1][0], result.matrix[2][0])
 
+    def reflect(self, n: Vector) -> Vector:
+        return self - n * 2 * self.dot(n)
+
     def __eq__(self, other: object) -> bool:
         return super().__eq__(other) and isinstance(other, Vector)
 

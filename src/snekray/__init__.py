@@ -7,6 +7,8 @@ from .types.ray import Ray
 from .objects.base_object import BaseObject
 from .objects.intersection import Intersection
 from .objects.sphere import Sphere
+from .objects.point_light import PointLight
+from .objects.material import Material
 
 from .canvas import Canvas
 
@@ -18,5 +20,6 @@ __all__ = [
     "Matrix",
     "Ray",
     "Sphere",
+    "PonitLight",
     "Intersection",
 ]
