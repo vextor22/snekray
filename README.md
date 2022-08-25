@@ -1,5 +1,9 @@
 # SnekRay
 ![example branch parameter](https://github.com/vextor22/snekray/actions/workflows/python-package.yml/badge.svg?branch=main)
+[![codecov](https://codecov.io/gh/vextor22/snekray/branch/main/graph/badge.svg?token=BB26TPRNPO)](https://codecov.io/gh/vextor22/snekray)
+
+## Coverage
+# <img src="https://codecov.io/gh/vextor22/snekray/branch/main/graphs/tree.svg?token=BB26TPRNPO"/>
 
 
 Python implementation of "The Ray Tracer Challenge"
