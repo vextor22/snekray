@@ -43,6 +43,9 @@ jobs:
         coverage xml -o reports/coverage.xml
         coverage html -d reports/coverage
       if: ${{ always() }}
+    - name: Upload coverage reports to Codecov with GitHub Action
+      uses: codecov/codecov-action@v3
+      if: ${{ always() }}
     #- name: Generate Badges
     #  run: |
     #    genbadge tests -i reports/junit.xml -o reports/pytest.svg

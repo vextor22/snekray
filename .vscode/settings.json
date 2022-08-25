@@ -10,5 +10,6 @@
         ".vscode/*.py",
         "venv/**/*.py"
     ],
-    "python.linting.lintOnSave": true
+    "python.linting.lintOnSave": true,
+    "editor.formatOnType": true
 }
