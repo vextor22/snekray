@@ -45,6 +45,8 @@ jobs:
       if: ${{ always() }}
     - name: Upload coverage reports to Codecov with GitHub Action
       uses: codecov/codecov-action@v3
+      with:
+        CODECOV_TOKEN: 'd6999d90-bc8b-43bd-b0a3-4362b8ee5d60'
       if: ${{ always() }}
     #- name: Generate Badges
     #  run: |
